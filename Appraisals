@@ -23,134 +23,33 @@ appraise "graphviz_1.0.8" do
 end
 
 # ActiveRecord integrations
-if RUBY_VERSION < "1.9.1"
-  appraise "active_record_2.0.0" do
-    gem "sqlite3-ruby", "1.3.1", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "2.0.0"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
-  
-  appraise "active_record_2.0.5" do
-    gem "sqlite3-ruby", "1.3.1", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "2.0.5"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
-  
-  appraise "active_record_2.1.0" do
-    gem "sqlite3-ruby", "1.3.1", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "2.1.0"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
-  
-  appraise "active_record_2.1.2" do
-    gem "sqlite3-ruby", "1.3.1", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "2.1.2"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
-  
-  appraise "active_record_2.2.3" do
-    gem "sqlite3-ruby", "1.3.1", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "2.2.3"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
+appraise "active_record_7.2.3" do
+  gem "sqlite3", "2.9.4"
+  gem "activerecord", "7.2.3"
 end
 
-if RUBY_VERSION < "1.9.2"
-  appraise "active_record_2.3.5" do
-    gem "sqlite3-ruby", "1.3.1", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "2.3.5"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
+appraise "active_record_8.0.5" do
+  gem "sqlite3", "2.9.4"
+  gem "activerecord", "8.0.5"
 end
 
-if RUBY_VERSION < "2.0.0"
-  appraise "active_record_2.3.12" do
-    gem "sqlite3-ruby", "1.3.1", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "2.3.12"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
+appraise "active_record_8.1.3" do
+  gem "sqlite3", "2.9.4"
+  gem "activerecord", "8.1.3"
 end
 
-if RUBY_VERSION > "1.8.6" && RUBY_PLATFORM != "java"
-  appraise "active_record_3.0.0" do
-    gem "sqlite3-ruby", "1.3.1", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "3.0.0"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
+appraise "active_model_7.2.3" do
+  gem "activemodel", "7.2.3"
 end
 
-if RUBY_VERSION > "1.8.6"
-  appraise "active_record_3.0.5" do
-    gem "sqlite3-ruby", "1.3.1", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "3.0.5"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
+appraise "active_model_8.0.5" do
+  gem "activemodel", "8.0.5"
 end
 
-if RUBY_VERSION > "1.8.6" && RUBY_VERSION != "1.9.1" && RUBY_VERSION < "2.0.0"
-  appraise "active_record_3.1.1" do
-    gem "sqlite3", "1.3.6", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "3.1.1"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
-  
-  appraise "active_record_3.2.12" do
-    gem "sqlite3", "1.3.6", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "3.2.12"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
+appraise "active_model_8.1.3" do
+  gem "activemodel", "8.1.3"
 end
 
-if RUBY_VERSION > "1.8.6" && RUBY_VERSION != "1.9.1"
-  appraise "active_record_3.2.13.rc1" do
-    gem "sqlite3", "1.3.6", :platform => [:ruby, :mswin, :mingw]
-    gem "activerecord", "3.2.13.rc1"
-    gem "activerecord-jdbcsqlite3-adapter", "1.2.7", :platform => :jruby
-  end
-end
-
-if RUBY_VERSION > "1.9.2"
-  appraise "active_record_4.0.0" do
-    gem "sqlite3", "1.3.6"
-    gem "activerecord", "4.0.0.beta1", :git => "git://github.com/rails/rails.git", :ref => "92d6dac"
-    gem "activerecord-deprecated_finders", "0.0.3"
-    gem "protected_attributes", "1.0.0"
-    gem "rails-observers", "0.1.1"
-  end
-end
-
-# ActiveModel integrations
-if RUBY_VERSION > "1.8.6" && RUBY_VERSION < "2.0.0"
-  appraise "active_model_3.0.0" do
-    gem "activemodel", "3.0.0"
-  end
-
-  appraise "active_model_3.0.5" do
-    gem "activemodel", "3.0.5"
-  end
-
-  appraise "active_model_3.1.1" do
-    gem "activemodel", "3.1.1"
-  end
-  
-  appraise "active_model_3.2.12" do
-    gem "activemodel", "3.2.12"
-  end
-end
-
-if RUBY_VERSION > "1.8.6"
-  appraise "active_model_3.2.13.rc1" do
-    gem "activemodel", "3.2.13.rc1"
-  end
-end
-
-if RUBY_VERSION > "1.9.2"
-  appraise "active_model_4.0.0" do
-    gem "activemodel", "4.0.0.beta", :git => "git://github.com/rails/rails.git", :ref => "4e286bf"
-    gem "rails-observers", "0.1.1"
-    gem "protected_attributes", "1.0.0"
-  end
-end
 
 # MongoMapper integrations
 if RUBY_VERSION > "1.8.6" && RUBY_VERSION < "1.9.1"

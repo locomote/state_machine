@@ -4,4 +4,4 @@ source "http://www.rubygems.org"
 
 gem "ruby-graphviz", "0.9.21"
 
-gemspec :path=>"../"
+gemspec path: "../"
