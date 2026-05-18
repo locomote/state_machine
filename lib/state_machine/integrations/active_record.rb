@@ -452,12 +452,31 @@ module StateMachine
         def define_static_state_initializer
           # This is the only available hook where the default set of attributes
           # can be overridden for a new object *prior* to the processing of the
-          # attributes passed into #initialize
+          # attributes passed into #initialize.
+          #
+          # On Rails < 5, +Model.new+ reads defaults from +column_defaults+.
+          # On Rails 5+, +Model.new+ instead reads from +_default_attributes+
+          # (an +ActiveModel::AttributeSet+). We override both so static initial
+          # states are applied regardless of which hook the AR version uses.
           define_helper :class, <<-end_eval, __FILE__, __LINE__ + 1
             def column_defaults(*) #:nodoc:
+              # Rails 5+ memoizes a *frozen* hash here, so dup before mutating
+              # and re-freeze to preserve the original contract.
               result = super
+              result = result.frozen? ? result.dup : result
               # No need to pass in an object, since the overrides will be forced
               self.state_machines.initialize_states(nil, :static => :force, :dynamic => false, :to => result)
+              result.freeze
+            end
+
+            def _default_attributes #:nodoc:
+              result = super
+              defaults = {}
+              self.state_machines.initialize_states(nil, :static => :force, :dynamic => false, :to => defaults)
+              defaults.each do |name, value|
+                key = name.to_s
+                result.write_from_user(key, value) if result.key?(key)
+              end
               result
             end
           end_eval

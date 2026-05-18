@@ -6,4 +6,4 @@ gem "activemodel", "3.2.13.rc1"
 gem "mongo", "~> 1.7.0"
 gem "mongo_mapper", "0.11.2"
 
-gemspec :path=>"../"
+gemspec path: "../"

@@ -6,4 +6,4 @@ gem "activemodel", "3.2.13.rc1"
 gem "mongo", "~> 1.7.0"
 gem "mongoid", "2.6.0"
 
-gemspec :path=>"../"
+gemspec path: "../"

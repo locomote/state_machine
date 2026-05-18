@@ -2264,7 +2264,12 @@ class MachineWithStateMatchersTest < Test::Unit::TestCase
   
   def test_should_not_allow_configurations
     exception = assert_raise(ArgumentError) { @machine.state(StateMachine::BlacklistMatcher.new([:parked]), :human_name => 'Parked') }
-    assert_equal 'Cannot configure states when using matchers (using {:human_name=>"Parked"})', exception.message
+
+    if RUBY_VERSION < "3.4"
+      assert_equal 'Cannot configure states when using matchers (using {:human_name=>"Parked"})', exception.message
+    else
+      assert_equal 'Cannot configure states when using matchers (using {human_name: "Parked"})', exception.message
+    end
   end
   
   def test_should_track_referenced_states
@@ -2406,7 +2411,12 @@ class MachineWithEventMatchersTest < Test::Unit::TestCase
   
   def test_should_not_allow_configurations
     exception = assert_raise(ArgumentError) { @machine.event(StateMachine::BlacklistMatcher.new([:park]), :human_name => 'Park') }
-    assert_equal 'Cannot configure events when using matchers (using {:human_name=>"Park"})', exception.message
+
+    if RUBY_VERSION < "3.4"
+      assert_equal 'Cannot configure events when using matchers (using {:human_name=>"Park"})', exception.message
+    else
+      assert_equal 'Cannot configure events when using matchers (using {human_name: "Park"})', exception.message
+    end
   end
   
   def test_should_track_referenced_events
